@@ -17,10 +17,13 @@ __license__ = "Unlicense "
 import os
 
 current_language = os.getenv("LANG", "en_US")[:5]
-msg = "Hello World"
+msg = {
+    "en_US": "Hello World",
+    "pt_BR": "Olá Mundo",
+    "it_IT": "Ciao Mondo",
+    "es_SP": "Hola Mundo",
+    "fr_FR": "Bonjour Monde",
+}
 
-if current_language == "pt_BR":
-    msg = "Olá Mundo!"
 
-
-print(msg)
+print(msg[current_language])

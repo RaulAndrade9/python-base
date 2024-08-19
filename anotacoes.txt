@@ -1,0 +1,49 @@
+--------------------GERAL--------------------
+criar um ambiente virtual para o python
+python -m venv .venv
+
+habilitar o powershell para executar script:
+Set-ExecutionPolicy Unrestricted
+
+pyformat(pra ver as especificações de formatação)
+
+dir(nome do objeto) -> mostra os métodos e protocolos do objeto.
+tem que ser executado dentro de um terminal python
+
+pep8.org - estilos python
+
+
+--------------------CONJUNTOS--------------------
+conjunto_a = set([1, 2, 3,4 ,5 ,6])
+conjunto_b = set([4, 5, 6, 7,8 ,9])
+
+novo_set = set (conjunto_a).union (set(conjunto_b)) mostra a união do dois conjuntos ou conjunto_a | conjunto_b
+
+novo_set = conjunto_a.intersection(conjunto_b) ou conjunto_a & conjunto_b mostra a intersecção entre os conjuntos
+
+novo_set = conjunto_a - conjunto_b ou conjunto_a.difference(conjunto_b) mostra a diferença entre os conjuntos, a ordem importa MUITO
+
+novo_set = conjunto_a.symmetric_difference(conjunto_b) ou conjunto_a ^ conjunto_b
+mostra a diferença simétrica entre os conjuntos (todos os elementos, exceto os que há em comum entre os dois conjuntos)
+
+--------------------DICIONARIO--------------------
+Quando cria um dicionário, há as informações de Key e Value (separados por um :)
+Para separar um elemento de outro usa uma vírgula
+criar:
+cliente = {"nome": "Raul", "endereco": "Servidei Demarchi", "cidade":"São Bernardo do Campo"}
+
+cliente.key() - mostra as keys do dicionário
+cliente.values() - mostra os values do dicionário
+cliente.items() - mostra as keys e os values
+
+
+cliente.update(outro_dicionario) - adciona as informações de outro dicionário ao cliente
+
+final = (**cliente, **outro_dicionario) - desempacota os dois dicionários dentro de um dicionário novo chamado 'final'
+
+iterar no dicionário
+for chave in cliente:
+    print(chave, cliente[chave])
+
+
+por padrão a iteração só traz a chave, mas é possível trazer também o valor com key[value]
