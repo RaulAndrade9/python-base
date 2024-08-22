@@ -12,10 +12,19 @@ tem que ser executado dentro de um terminal python
 
 pep8.org - estilos python
 
+--------------------FORMATAÇÃO--------------------
+variavel.srtip("caractere") - remove todos os caracteres da variável
+ex: nome = "Raul-Santos-Andrade"
+    nome.strip("-")
+    print(nome)
+    RaulSantosAndrade
+
 
 --------------------CONJUNTOS--------------------
 conjunto_a = set([1, 2, 3,4 ,5 ,6])
 conjunto_b = set([4, 5, 6, 7,8 ,9])
+
+set não são iteráveis
 
 novo_set = set (conjunto_a).union (set(conjunto_b)) mostra a união do dois conjuntos ou conjunto_a | conjunto_b
 
