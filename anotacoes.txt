@@ -19,6 +19,8 @@ ex: nome = "Raul-Santos-Andrade"
     print(nome)
     RaulSantosAndrade
 
+variavel.lstript() - remove o caracter definido nos parênteses apenas a esquerda
+
 
 --------------------CONJUNTOS--------------------
 conjunto_a = set([1, 2, 3,4 ,5 ,6])
@@ -56,3 +58,65 @@ for chave in cliente:
 
 
 por padrão a iteração só traz a chave, mas é possível trazer também o valor com key[value]
+
+
+--------------------CRIAR ARQUIVOS COM IPYTHON UTILIZANDO MÓDULO OS--------------------
+é preciso usar o import.os
+os.mkdir("nome_da_pasta") cria uma nome_da_pasta
+os.listdir(os.curdir) lista os arquivos no diretório atual
+os.makedirs("nome_da_pasta/subpasta", exist_ok=True) cria uma pasta dentro da pasta já criada*
+
+*Não é recomendável descrever o caminho do arquivo com "/" pois dependendo do sistema operacional pode não funcionar.
+Pra isso, utilizamos a função join do método path: path = os.path.join("pasta", "subpasta") então para criar a pasta utilizar o path. join Ex: os.makedirs(path, exist_ok=True)
+
+após criar o arquivo, armazenar o caminho em uma variável:
+file_path = os.path.join(path, "arquivo.txt")
+
+*****os.mknod não funciona no windows*******
+Por algum motivo, eu não estou conseguindo abrir o arquivo usando a variável file_path, então estou abrindo passando o nome do arquivo mesmo, como estou na mesma pasta não há problema.
+Utilizo:    arquivo = open('arquivo.txt', 'w')   o "w" é o modo do arquivo, que começa com write pra podermos escrever. Lembrar de fechar o arquivo com arquivo.close() e se quiser ler 
+é necessário atribuir a variável o modo de leitura no caso    arquivo = open('arquivo.txt', 'r') o 'r' é de read
+
+após usar o read pra ler o arquivo, não é possível ler de novo, pois ele consome o arquivo, como se fosse um buffer
+
+Usar o modo 'w' pra escrever um arquivo que já possui algo, irá sobrescrever. Para adcionar conteúdo é necessário usar o modo 'a' que é de append.
+
+Utilizar o open cria um arquivo mesmo que ele não exista.
+
+Utilizando o context manager, é possível abrir e manipular o arquivo sem precisar utilizar o .close, pois ele fecha o arquivo sozinho.Ex:
+with open('arquivo.txt', 'a') as arquivo:
+    arquivo.write("Hello World")
+    arquivo.write("teste)
+
+Ao quebrar a identação o arquivo será fechado.
+**OBS: lembrar de usar \n para quebrar a linha
+
+é possível escrever em um arquivo utilizando o print. Ex:
+print("Brasil", file=open('arquivo.txt', 'a'))
+O print já insere o \n e também ja fecha o arquivo.
+
+**usar o print para abrir e ler o arquivo**
+print(open('arquivo.txt').read())
+
+É possível inserir diversas linhas em um arquivo utilzando o método writelines, inserindo as linhas em uma lista e depois inserindo essa lista.
+lista = [lista com diversas linhas]
+with open('texto.txt', 'a') as arquivo:
+    arquivo.writelines(lista)
+
+utilizando o .readlines, é possível ler linha a linha ao invés do texto todo como no read. O readlines devolve uma lista. Ex:
+open('texto.txt').readlines()
+['titulo\n', '\n', 'Este post fala sobre\n', 'O assunto é sobre\n']
+
+
+--------------------CRIAR ARQUIVOS COM IPYTHON UTILIZANDO MÓDULO PATH--------------------
+from pathlib import Path - para importar o módulo
+
+
+Path("pasta)
+WindowsPath('pasta')
+
+para substituir o que fiz anteriormente e passar o caminho da pasta, utilizaremos:
+path = Path("pasta") / Path("subpasta")
+
+dessa forma podemos utilizar
+filepath = path / Path("novo.txt") - para descrever um caminho para o arquivo novo.txt
