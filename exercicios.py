@@ -1,3 +1,5 @@
-import sys
+ #%%
 
-print(sys.stdout)
+print("raul")
+print("santos")
+print("Andrade")
