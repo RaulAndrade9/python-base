@@ -21,6 +21,31 @@ ex: nome = "Raul-Santos-Andrade"
 
 variavel.lstript() - remove o caracter definido nos parênteses apenas a esquerda
 
+formatando usando o %
+
+mensagem  = "Olá, %s, voce é o participante número %d e pode ganhar %.2f pontos."
+- colocar ao lado do % o tipo de dado (s=string, d=double, f=float)
+posso exibir através do print(mensagem % ("Raul", 8, 150)) ou se tiver sido atribuido a uma variável ex:
+nome = Raul
+numero = 8
+pontos = 150
+print(mensagem % (nome, numero, pontos))
+
+
+Usanto o format 
+
+mensagem  = "Olá, {}, voce é o participante número {} e pode ganhar {:.2f} pontos."
+
+print(mensagem.format("Raul", 8, 150))
+ou
+print(mensagem.format(nome, numero, pontos))
+
+
+Usando F string
+nome = "Raul"
+
+print(f"{nome:-^40}")
+***Lembrar de colocar as chaves entre as ""
 
 --------------------CONJUNTOS--------------------
 conjunto_a = set([1, 2, 3,4 ,5 ,6])
