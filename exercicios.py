@@ -1,20 +1,17 @@
-produto = {
-    "nome": "Caneta",
-    "cor": ["azul", "branco", "vermelho"],
-    "preco": 2.50,
-    "dimensao_altura": 10.8,
-    "dimensao_largura": 0.7,
-    "em_estoque": True,
-    "codigo": 454545,
-}
+import os
 
-teste = {
-    "A": 'a'
-}
+mensagem = input('Insira um texto ')
 
-produto.update(teste)
-
-for key in produto:
-    print(key, "-->", produto[key])
+path = os.path.join(os.curdir, 'arquivos')
+filepath = os.path.join(path, 'arquivo.txt')
 
 
+os.makedirs(path, exist_ok=True)
+arquivo = open(filepath, 'a', encoding='UTF-8')
+
+arquivo.write(mensagem)
+arquivo.write('\n')
+arquivo.close()
+
+arquivo = open(filepath, 'r', encoding='UTF-8')
+print(arquivo.read())

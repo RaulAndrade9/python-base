@@ -7,7 +7,7 @@ import os
 try: 
     names = open("names.txt").readlines()
 except FileNotFoundError as e: 
-    print("[Error] str(e).")
+    print(f"[Error] {str(e)}.")
     sys.exit(1)
 except AttributeError:
     print("Error: List doesnt have banana")
@@ -20,3 +20,9 @@ try:
 except:
     print("Error: Missing name in the list")
     sys.exit(1)
+
+
+try:
+    raise RuntimeError("Ocorreu um erro")
+except Exception as e:
+    print(f'{str(e)}')

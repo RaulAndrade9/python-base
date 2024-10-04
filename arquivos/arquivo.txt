@@ -1,0 +1,4 @@
+Olá, meu nome é Raul. Qual o seu nome?
+Olá Raul, o meu nome é João. Onde voce mora ?
+Aqui acaba o teste!
+Mas aqui começa outro teste, hehe!

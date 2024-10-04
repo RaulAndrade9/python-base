@@ -88,53 +88,32 @@ por padrão a iteração só traz a chave, mas é possível trazer também o val
 --------------------CRIAR ARQUIVOS COM IPYTHON UTILIZANDO MÓDULO OS--------------------
 import.os -> importa o módulo necessário
 
-os.mkdir("nome_da_pasta") -> cria uma pasta
+os.mkdir('nome da pasta') -> cria uma pasta
+os.makedirs('caminho da pasta', exist_ok=True) -> também cria uma pasta, mas caso ela já exista não dá erro
 
-os.listdir(os.curdir) -> lista os arquivos no diretório atual
+É recomendável utilizar uma variável para definir o caminho da pasta, pois dependendo do sistema operacional o caminho inserido pode não funcionar.
+Ex. Linux usa uma '/' como separador, no windows é uma '\' barra invertida
 
-os.makedirs("nome_da_pasta/subpasta", exist_ok=True) cria uma pasta dentro da pasta já criada*
+ficando assim: 
+path = os.path.join('nome da pasta', 'nome da subpasta')
+os.makedirs(path, exist_ok=True)
 
-path = os.path.join("pasta", "subpasta") -> cria um path para onde provavelmente o arquivo manipulado estará
+Listar o diretório atual:
+os.curdir
 
-file_path = os.path.join(path, "arquivo.txt") -> armazena o arquivo em uma variável, facilitando pra quando for necessário abrir, ler
+Mostra o caminho absoluto do arquivo:
+os.path.abspath(filepath do arquivo)
 
-arquivo = open('arquivo.txt', 'w') -> abre o arquivo no modo de escrita
+Criar um arquivo:
+arquivo = open(filepath, 'a') -> caso o arquivo não exista, o python irá criar
 
-arquivo = open('arquivo.txt', 'r') -> abre o arquivo no modo de leitura
+usando o context manager:
+ with open(filepath, 'a') as arquivo:
+    arqvuivo.write
 
-arquivo = open('arquivo.txt', 'a') -> abre o arquivo no modo append, que é quando queremos adcionar informações sem apagar as que já estavam lá.
-O modo 'w' apaga o que ja tem e insere novas informações
+utilizando o context manager não é preciso fechar usando o .close, é preciso apenas sair da identação.
 
-arquivo.close() -> fecha o arquivo
-  
 
-após usar o read pra ler o arquivo, não é possível ler de novo, pois ele consome o arquivo, como se fosse um buffer
-Utilizar o open cria um arquivo mesmo que ele não exista.
-
-Utilizando o context manager, é possível abrir e manipular o arquivo sem precisar utilizar o .close, pois ele fecha o arquivo sozinho.
-Ex:
-with open('arquivo.txt', 'a') as arquivo:
-    arquivo.write("Hello World")
-    arquivo.write("teste)
-
-Ao quebrar a identação o arquivo será fechado.
-**OBS: lembrar de usar \n para quebrar a linha
-
-é possível escrever em um arquivo utilizando o print. Ex:
-print("Brasil", file=open('arquivo.txt', 'a'))
-O print já insere o \n e também ja fecha o arquivo.
-
-**usar o print para abrir e ler o arquivo**
-print(open('arquivo.txt').read())
-
-É possível inserir diversas linhas em um arquivo utilzando o método writelines, inserindo as linhas em uma lista e depois inserindo essa lista.
-lista = [lista com diversas linhas]
-with open('texto.txt', 'a') as arquivo:
-    arquivo.writelines(lista)
-
-utilizando o .readlines, é possível ler linha a linha ao invés do texto todo como no read. O readlines devolve uma lista. Ex:
-open('texto.txt').readlines()
-['titulo\n', '\n', 'Este post fala sobre\n', 'O assunto é sobre\n']
 
 
 --------------------CRIAR ARQUIVOS COM IPYTHON UTILIZANDO MÓDULO PATH--------------------
@@ -153,3 +132,11 @@ filepath = path / Path("novo.txt") - para descrever um caminho para o arquivo no
 filepath.write_text("texto")-> para escrever no arquivo
 
 filepath.read_text() -> pra ler o arquivo
+
+
+--------------------TRATAMENTO DE ERROS--------------------
+É de boa prática utilizar o try except para tratar erros.
+try:
+    names = open("names.txt).readlines()
+except(FileNotFoundError, ZeroDivisionError) as e:     #é possível colocar mais de um erro, colocando eles em parenteses e separando por virgula
+    print(f"{str(e)}")
